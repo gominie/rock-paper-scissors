@@ -9,7 +9,9 @@ const computerSelection = getComputerChoice(stringCollection)
 
 let playerSelection = prompt("Rock, paper or scissors");
 function playRound(playerSelection, computerSelection) {
-     
+     if (!stringCollection.includes(playerSelection)) {
+        return "Invalid input. Please choose Rock, Paper, or Scissors."
+     }
     if (playerSelection !== null) {
         playerSelection = playerSelection.toLowerCase();
     }
