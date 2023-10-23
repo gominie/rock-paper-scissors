@@ -10,8 +10,6 @@ if (playerSelection === null) {
         return "You canceled the game.";
     }
 
-    playerSelection = playerSelection.toLowerCase();
-
 if (!stringCollection.includes(playerSelection)) {
     return "Invalid input. Please choose rock, paper, or scissors.";
   }
