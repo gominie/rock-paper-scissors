@@ -6,11 +6,11 @@ function getComputerChoice(collection) {
 }
 
 function playRound(playerSelection, computerSelection) {
-if (playerSelection === null) {
-        return "You canceled the game.";
-    }
+  if (playerSelection === null) {
+    return "You canceled the game.";
+  }
 
-if (!stringCollection.includes(playerSelection)) {
+  if (!stringCollection.includes(playerSelection)) {
     return "Invalid input. Please choose rock, paper, or scissors.";
   }
 
@@ -27,24 +27,39 @@ if (!stringCollection.includes(playerSelection)) {
   }
 }
 
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", function () {
+  playerSelection = "rock";
+  playGame();
+});
+
+paper.addEventListener("click", function () {
+  const result = playRound("paper", getComputerChoice(stringCollection));
+  playerSelection = "paper";
+  playGame();
+});
+
+scissors.addEventListener("click", function () {
+  const result = playRound("scissors", getComputerChoice(stringCollection));
+  playerSelection = "scissors";
+  playGame();
+});
+
+function playGame() {
+  const computerSelection = getComputerChoice(stringCollection);
+  const result = playRound(playerSelection, computerSelection);
+  resultDiv.innerHTML = result;
+}
+
+const resultDiv = document.querySelector(".results");
+
 function game(rounds) {
   for (let i = 0; i < rounds; i++) {
-let playerSelection;
-while (true) {
-    playerSelection = prompt("Rock, paper, or scissors");
-if (playerSelection !== null) {
-                playerSelection = playerSelection.toLowerCase(); // Convert input to lowercase
-}
-if (stringCollection.includes(playerSelection)) {
-                break;
-}
-alert("Invalid input. Please choose rock, paper, or scissors.");
-        }
-    const computerSelection = getComputerChoice(stringCollection);
-    let result = playRound(playerSelection, computerSelection);
-    alert(result);
+    playGame(); // Call the playGame function instead of prompting the user
   }
 }
 
 game(5);
-
